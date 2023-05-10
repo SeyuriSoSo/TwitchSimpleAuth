@@ -92,7 +92,7 @@ class SimpleTwitchAuth {
         } catch(err) { this.authRefreshValid = false; }
     }
 
-    urlAuth() { return `${this.config.urls.authorize}?` + querystring.stringify({
+    urlAuth() { return `${this.urls.authorize}?` + querystring.stringify({
         'response_type': 'code',
         'client_id': this.config.client_id,
         'redirect_uri': this.config.redirect_uri,
@@ -100,7 +100,7 @@ class SimpleTwitchAuth {
         'state': randomString(16)
     })};
     urlCallback(code) {
-        return `${this.config.urls.token}?` + querystring.stringify({
+        return `${this.urls.token}?` + querystring.stringify({
             'client_id': this.config.client_id,
             'client_secret': this.config.client_secret,
             'code': code,
@@ -109,7 +109,7 @@ class SimpleTwitchAuth {
         });
     }
     urlRefresh() {
-        return `${this.config.urls.token}?` + querystring.stringify({
+        return `${this.urls.token}?` + querystring.stringify({
             'grant_type': 'refresh_token',
             'refresh_token': this.auth.refresh_token,
             'client_id': this.config.client_id,
